@@ -1,0 +1,8 @@
+GoCJ_Dataset_100 HS  run 1 seed=42: IDENTIK - 100 / 100 task sama, fitness sama (1.039516165183047) [Python 1.8 s]
+GoCJ_Dataset_100 HS  run 2 seed=43: IDENTIK - 100 / 100 task sama, fitness sama (1.2355786438758645) [Python 1.9 s]
+GoCJ_Dataset_100 HS  run 3 seed=44: IDENTIK - 100 / 100 task sama, fitness sama (1.0601428049596568) [Python 1.8 s]
+GoCJ_Dataset_100 CSA run 1 seed=42: IDENTIK - 100 / 100 task sama, fitness sama (1.1613942707443736) [Python 0.2 s]
+GoCJ_Dataset_100 CSA run 2 seed=43: IDENTIK - 100 / 100 task sama, fitness sama (1.0853677157022468) [Python 0.2 s]
+GoCJ_Dataset_100 CSA run 3 seed=44: IDENTIK - 100 / 100 task sama, fitness sama (1.1069240670069074) [Python 0.2 s]
+GoCJ_Dataset_500 HS  run 1 seed=42: IDENTIK - 500 / 500 task sama, fitness sama (1.028182221117401) [Python 9.4 s]
+GoCJ_Dataset_500 HS  run 2 seed=43: IDENTIK - 500 / 500 task sama, fitness sama (1.0317823172069178) [Python 9.2 s]

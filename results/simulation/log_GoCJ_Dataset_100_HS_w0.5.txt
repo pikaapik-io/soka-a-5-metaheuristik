@@ -1,0 +1,76 @@
+scheduler=HS(HMS=20, HMCR=0.98, PAR=0.5) dataset=GoCJ_Dataset_100 tasks=100 runs=10 seed=42..51 w=0.5 budget=10000
+=== Infrastruktur CloudSim ===
+DC-1 Performance | x86 / Linux / Xen | 3 host | $0.05/s, $0.02/GB RAM, $0.0010/GB storage, $0.005/Mbps BW
+  Host 0 | 8 PE x 3000 MIPS | RAM 32 GB | BW 10000 Mbps | P idle 175 W, P max 250 W | PE terpakai 8/8
+    vm0  V3 | 4 PE x 2500 MIPS | RAM 8 GB | BW 1000 Mbps
+    vm3  V3 | 4 PE x 2500 MIPS | RAM 8 GB | BW 1000 Mbps
+  Host 1 | 8 PE x 3000 MIPS | RAM 32 GB | BW 10000 Mbps | P idle 175 W, P max 250 W | PE terpakai 8/8
+    vm1  V3 | 4 PE x 2500 MIPS | RAM 8 GB | BW 1000 Mbps
+    vm4  V2 | 2 PE x 1500 MIPS | RAM 4 GB | BW 1000 Mbps
+    vm6  V2 | 2 PE x 1500 MIPS | RAM 4 GB | BW 1000 Mbps
+  Host 2 | 8 PE x 3000 MIPS | RAM 32 GB | BW 10000 Mbps | P idle 175 W, P max 250 W | PE terpakai 8/8
+    vm2  V3 | 4 PE x 2500 MIPS | RAM 8 GB | BW 1000 Mbps
+    vm5  V2 | 2 PE x 1500 MIPS | RAM 4 GB | BW 1000 Mbps
+    vm7  V2 | 2 PE x 1500 MIPS | RAM 4 GB | BW 1000 Mbps
+DC-2 Efficiency | x86 / Linux / Xen | 3 host | $0.03/s, $0.01/GB RAM, $0.0008/GB storage, $0.003/Mbps BW
+  Host 0 | 8 PE x 1800 MIPS | RAM 32 GB | BW 5000 Mbps | P idle 72 W, P max 120 W | PE terpakai 6/8
+    vm8  V2 | 2 PE x 1500 MIPS | RAM 4 GB | BW 1000 Mbps
+    vm11 V2 | 2 PE x 1500 MIPS | RAM 4 GB | BW 1000 Mbps
+    vm16 V1 | 1 PE x 1000 MIPS | RAM 2 GB | BW 500 Mbps
+    vm19 V1 | 1 PE x 1000 MIPS | RAM 2 GB | BW 500 Mbps
+  Host 1 | 8 PE x 1800 MIPS | RAM 32 GB | BW 5000 Mbps | P idle 72 W, P max 120 W | PE terpakai 5/8
+    vm9  V2 | 2 PE x 1500 MIPS | RAM 4 GB | BW 1000 Mbps
+    vm12 V1 | 1 PE x 1000 MIPS | RAM 2 GB | BW 500 Mbps
+    vm14 V1 | 1 PE x 1000 MIPS | RAM 2 GB | BW 500 Mbps
+    vm17 V1 | 1 PE x 1000 MIPS | RAM 2 GB | BW 500 Mbps
+  Host 2 | 8 PE x 1800 MIPS | RAM 32 GB | BW 5000 Mbps | P idle 72 W, P max 120 W | PE terpakai 5/8
+    vm10 V2 | 2 PE x 1500 MIPS | RAM 4 GB | BW 1000 Mbps
+    vm13 V1 | 1 PE x 1000 MIPS | RAM 2 GB | BW 500 Mbps
+    vm15 V1 | 1 PE x 1000 MIPS | RAM 2 GB | BW 500 Mbps
+    vm18 V1 | 1 PE x 1000 MIPS | RAM 2 GB | BW 500 Mbps
+Total: 2 datacenter, 6 host, 20 VM | sum P_idle = 741 W, kappa DC-1 = 0.003125 J/MI, kappa DC-2 = 0.003333 J/MI
+
+[run 1/10 seed=42] fitness=1.039516 evaluations=10000 | tasks=100, vmsCreated=20/20, cloudletsFinished=100/100
+  makespan=199.073 s (analitik 195.600 s), energy=0.0530 kWh (analitik 0.0522 kWh), avgResponse=106.634 s
+  utilization=88.96%, DI=0.6429 (VM terpakai 0.6429), throughput=0.5023 task/s, cost=$304.30, schedulingTime=89.628 ms
+[run 2/10 seed=43] fitness=1.235579 evaluations=10000 | tasks=100, vmsCreated=20/20, cloudletsFinished=100/100
+  makespan=240.596 s (analitik 237.500 s), energy=0.0614 kWh (analitik 0.0607 kWh), avgResponse=117.785 s
+  utilization=52.02%, DI=1.9225 (VM terpakai 1.2754), throughput=0.4156 task/s, cost=$354.13, schedulingTime=80.054 ms
+[run 3/10 seed=44] fitness=1.060143 evaluations=10000 | tasks=100, vmsCreated=20/20, cloudletsFinished=100/100
+  makespan=201.944 s (analitik 200.000 s), energy=0.0535 kWh (analitik 0.0531 kWh), avgResponse=109.219 s
+  utilization=84.71%, DI=0.8227 (VM terpakai 0.8227), throughput=0.4952 task/s, cost=$307.74, schedulingTime=80.931 ms
+[run 4/10 seed=45] fitness=1.078803 evaluations=10000 | tasks=100, vmsCreated=20/20, cloudletsFinished=100/100
+  makespan=207.284 s (analitik 204.000 s), energy=0.0546 kWh (analitik 0.0539 kWh), avgResponse=111.723 s
+  utilization=77.04%, DI=1.2980 (VM terpakai 0.9022), throughput=0.4824 task/s, cost=$314.15, schedulingTime=80.295 ms
+[run 5/10 seed=46] fitness=1.058199 evaluations=10000 | tasks=100, vmsCreated=20/20, cloudletsFinished=100/100
+  makespan=202.040 s (analitik 199.600 s), energy=0.0535 kWh (analitik 0.0530 kWh), avgResponse=107.744 s
+  utilization=82.79%, DI=1.2078 (VM terpakai 0.6521), throughput=0.4950 task/s, cost=$307.86, schedulingTime=83.652 ms
+[run 6/10 seed=47] fitness=1.103816 evaluations=10000 | tasks=100, vmsCreated=20/20, cloudletsFinished=100/100
+  makespan=212.300 s (analitik 209.350 s), energy=0.0556 kWh (analitik 0.0550 kWh), avgResponse=105.185 s
+  utilization=77.72%, DI=0.9763 (VM terpakai 0.9763), throughput=0.4710 task/s, cost=$320.17, schedulingTime=82.557 ms
+[run 7/10 seed=48] fitness=1.036705 evaluations=10000 | tasks=100, vmsCreated=20/20, cloudletsFinished=100/100
+  makespan=197.380 s (analitik 195.000 s), energy=0.0526 kWh (analitik 0.0521 kWh), avgResponse=109.114 s
+  utilization=90.86%, DI=0.5406 (VM terpakai 0.5406), throughput=0.5066 task/s, cost=$302.27, schedulingTime=90.209 ms
+[run 8/10 seed=49] fitness=1.081894 evaluations=10000 | tasks=100, vmsCreated=20/20, cloudletsFinished=100/100
+  makespan=207.125 s (analitik 204.667 s), energy=0.0546 kWh (analitik 0.0540 kWh), avgResponse=110.678 s
+  utilization=73.48%, DI=1.3610 (VM terpakai 0.9871), throughput=0.4828 task/s, cost=$313.96, schedulingTime=89.941 ms
+[run 9/10 seed=50] fitness=1.235560 evaluations=10000 | tasks=100, vmsCreated=20/20, cloudletsFinished=100/100
+  makespan=240.500 s (analitik 237.500 s), energy=0.0614 kWh (analitik 0.0607 kWh), avgResponse=129.266 s
+  utilization=53.53%, DI=1.8682 (VM terpakai 0.9063), throughput=0.4158 task/s, cost=$354.01, schedulingTime=84.945 ms
+[run 10/10 seed=51] fitness=1.124393 evaluations=10000 | tasks=100, vmsCreated=20/20, cloudletsFinished=100/100
+  makespan=217.443 s (analitik 213.750 s), energy=0.0567 kWh (analitik 0.0559 kWh), avgResponse=108.688 s
+  utilization=70.87%, DI=1.4110 (VM terpakai 0.9508), throughput=0.4599 task/s, cost=$326.34, schedulingTime=79.518 ms
+rata-rata ± std dari 10 run:
+  fitness                      1.1055 ± 0.0737
+  makespan_s                 212.5685 ± 15.9291
+  analytic_makespan_s        209.6967 ± 15.7446
+  energy_kwh                   0.0557 ± 0.0032
+  analytic_energy_kwh          0.0550 ± 0.0032
+  avg_response_s             111.6036 ± 7.0887
+  utilization_pct             75.1974 ± 13.4211
+  di_all_vm                    1.2051 ± 0.4697
+  di_used_vm                   0.8656 ± 0.2129
+  throughput_task_s            0.4727 ± 0.0331
+  cost_usd                   320.4941 ± 19.1150
+  scheduling_ms               84.1729 ± 4.3092
+hasil -> results/simulation/summary.csv, aggregate.csv, cloudlets_GoCJ_Dataset_100_HS_w0.5_run*.csv, convergence_GoCJ_Dataset_100_HS_w0.5_run*.csv

@@ -1,0 +1,217 @@
+# Docker Compose: HS & CSA Real-World (Kelompok 5), mengikuti Design Project bagian 2.
+#
+# 20 container = 20 VM. Skala: 1,0 CPU = 10.000 MIPS.
+#
+#   VM        Tipe  PE x MIPS     CPU container   RAM   Port
+#   vm00-03   V3    4 x 2.500  ->  4 x 0,25 = 1,0   8g    9100-9103
+#   vm04-11   V2    2 x 1.500  ->  2 x 0,15 = 0,3   4g    9104-9111
+#   vm12-19   V1    1 x 1.000  ->  1 x 0,10 = 0,1   2g    9112-9119
+#
+# * PES proses per container = jumlah PE VM; tiap PE dibatasi PE_SHARE CPU, dan
+#   total container dibatasi kernel lewat cpu_quota / cpu_period (periode 10 ms).
+# * mem_limit = RAM VM di desain (batas atas, bukan reservasi).
+# * Datacenter = jaringan Docker (dc1 Performance, dc2 Efficiency). Label
+#   soka.host mengikuti penempatan VM hasil CloudSim (results/simulation/placement.csv).
+#
+# Jalankan:  docker compose up -d   |   Matikan:  docker compose down
+#
+# Nama project ditulis eksplisit. Tanpa ini, project-nya bernama "realworld" (nama folder),
+# sama dengan compose KPB, dan "up" akan menghapus container kpb_vm* lalu menggantinya.
+
+name: soka-a-5-metaheuristic
+
+x-worker: &worker
+  image: python:3.12-slim
+  command: ["python3", "-u", "/app/worker.py"]
+  volumes:
+    - ./worker:/app:ro
+  restart: unless-stopped
+  cpu_period: 10000
+
+networks:
+  dc1:
+    name: soka_dc1_performance
+  dc2:
+    name: soka_dc2_efficiency
+
+services:
+  vm00:
+    <<: *worker
+    container_name: meta_vm00
+    cpu_quota: 10000   # 4 PE x 0.25 CPU
+    mem_limit: 8g
+    environment: { VM_NAME: vm00, VM_TYPE: V3, PES: "4", PE_SHARE: "0.25", PORT: "8000" }
+    labels: { soka.dc: "DC-1", soka.host: "dc1-hostA0", soka.vm_type: V3 }
+    networks: [dc1]
+    ports: ["127.0.0.1:9100:8000"]
+  vm01:
+    <<: *worker
+    container_name: meta_vm01
+    cpu_quota: 10000   # 4 PE x 0.25 CPU
+    mem_limit: 8g
+    environment: { VM_NAME: vm01, VM_TYPE: V3, PES: "4", PE_SHARE: "0.25", PORT: "8000" }
+    labels: { soka.dc: "DC-1", soka.host: "dc1-hostA1", soka.vm_type: V3 }
+    networks: [dc1]
+    ports: ["127.0.0.1:9101:8000"]
+  vm02:
+    <<: *worker
+    container_name: meta_vm02
+    cpu_quota: 10000   # 4 PE x 0.25 CPU
+    mem_limit: 8g
+    environment: { VM_NAME: vm02, VM_TYPE: V3, PES: "4", PE_SHARE: "0.25", PORT: "8000" }
+    labels: { soka.dc: "DC-1", soka.host: "dc1-hostA2", soka.vm_type: V3 }
+    networks: [dc1]
+    ports: ["127.0.0.1:9102:8000"]
+  vm03:
+    <<: *worker
+    container_name: meta_vm03
+    cpu_quota: 10000   # 4 PE x 0.25 CPU
+    mem_limit: 8g
+    environment: { VM_NAME: vm03, VM_TYPE: V3, PES: "4", PE_SHARE: "0.25", PORT: "8000" }
+    labels: { soka.dc: "DC-1", soka.host: "dc1-hostA0", soka.vm_type: V3 }
+    networks: [dc1]
+    ports: ["127.0.0.1:9103:8000"]
+  vm04:
+    <<: *worker
+    container_name: meta_vm04
+    cpu_quota: 3000   # 2 PE x 0.15 CPU
+    mem_limit: 4g
+    environment: { VM_NAME: vm04, VM_TYPE: V2, PES: "2", PE_SHARE: "0.15", PORT: "8000" }
+    labels: { soka.dc: "DC-1", soka.host: "dc1-hostA1", soka.vm_type: V2 }
+    networks: [dc1]
+    ports: ["127.0.0.1:9104:8000"]
+  vm05:
+    <<: *worker
+    container_name: meta_vm05
+    cpu_quota: 3000   # 2 PE x 0.15 CPU
+    mem_limit: 4g
+    environment: { VM_NAME: vm05, VM_TYPE: V2, PES: "2", PE_SHARE: "0.15", PORT: "8000" }
+    labels: { soka.dc: "DC-1", soka.host: "dc1-hostA2", soka.vm_type: V2 }
+    networks: [dc1]
+    ports: ["127.0.0.1:9105:8000"]
+  vm06:
+    <<: *worker
+    container_name: meta_vm06
+    cpu_quota: 3000   # 2 PE x 0.15 CPU
+    mem_limit: 4g
+    environment: { VM_NAME: vm06, VM_TYPE: V2, PES: "2", PE_SHARE: "0.15", PORT: "8000" }
+    labels: { soka.dc: "DC-1", soka.host: "dc1-hostA1", soka.vm_type: V2 }
+    networks: [dc1]
+    ports: ["127.0.0.1:9106:8000"]
+  vm07:
+    <<: *worker
+    container_name: meta_vm07
+    cpu_quota: 3000   # 2 PE x 0.15 CPU
+    mem_limit: 4g
+    environment: { VM_NAME: vm07, VM_TYPE: V2, PES: "2", PE_SHARE: "0.15", PORT: "8000" }
+    labels: { soka.dc: "DC-1", soka.host: "dc1-hostA2", soka.vm_type: V2 }
+    networks: [dc1]
+    ports: ["127.0.0.1:9107:8000"]
+  vm08:
+    <<: *worker
+    container_name: meta_vm08
+    cpu_quota: 3000   # 2 PE x 0.15 CPU
+    mem_limit: 4g
+    environment: { VM_NAME: vm08, VM_TYPE: V2, PES: "2", PE_SHARE: "0.15", PORT: "8000" }
+    labels: { soka.dc: "DC-2", soka.host: "dc2-hostB0", soka.vm_type: V2 }
+    networks: [dc2]
+    ports: ["127.0.0.1:9108:8000"]
+  vm09:
+    <<: *worker
+    container_name: meta_vm09
+    cpu_quota: 3000   # 2 PE x 0.15 CPU
+    mem_limit: 4g
+    environment: { VM_NAME: vm09, VM_TYPE: V2, PES: "2", PE_SHARE: "0.15", PORT: "8000" }
+    labels: { soka.dc: "DC-2", soka.host: "dc2-hostB1", soka.vm_type: V2 }
+    networks: [dc2]
+    ports: ["127.0.0.1:9109:8000"]
+  vm10:
+    <<: *worker
+    container_name: meta_vm10
+    cpu_quota: 3000   # 2 PE x 0.15 CPU
+    mem_limit: 4g
+    environment: { VM_NAME: vm10, VM_TYPE: V2, PES: "2", PE_SHARE: "0.15", PORT: "8000" }
+    labels: { soka.dc: "DC-2", soka.host: "dc2-hostB2", soka.vm_type: V2 }
+    networks: [dc2]
+    ports: ["127.0.0.1:9110:8000"]
+  vm11:
+    <<: *worker
+    container_name: meta_vm11
+    cpu_quota: 3000   # 2 PE x 0.15 CPU
+    mem_limit: 4g
+    environment: { VM_NAME: vm11, VM_TYPE: V2, PES: "2", PE_SHARE: "0.15", PORT: "8000" }
+    labels: { soka.dc: "DC-2", soka.host: "dc2-hostB0", soka.vm_type: V2 }
+    networks: [dc2]
+    ports: ["127.0.0.1:9111:8000"]
+  vm12:
+    <<: *worker
+    container_name: meta_vm12
+    cpu_quota: 1000   # 1 PE x 0.1 CPU
+    mem_limit: 2g
+    environment: { VM_NAME: vm12, VM_TYPE: V1, PES: "1", PE_SHARE: "0.1", PORT: "8000" }
+    labels: { soka.dc: "DC-2", soka.host: "dc2-hostB1", soka.vm_type: V1 }
+    networks: [dc2]
+    ports: ["127.0.0.1:9112:8000"]
+  vm13:
+    <<: *worker
+    container_name: meta_vm13
+    cpu_quota: 1000   # 1 PE x 0.1 CPU
+    mem_limit: 2g
+    environment: { VM_NAME: vm13, VM_TYPE: V1, PES: "1", PE_SHARE: "0.1", PORT: "8000" }
+    labels: { soka.dc: "DC-2", soka.host: "dc2-hostB2", soka.vm_type: V1 }
+    networks: [dc2]
+    ports: ["127.0.0.1:9113:8000"]
+  vm14:
+    <<: *worker
+    container_name: meta_vm14
+    cpu_quota: 1000   # 1 PE x 0.1 CPU
+    mem_limit: 2g
+    environment: { VM_NAME: vm14, VM_TYPE: V1, PES: "1", PE_SHARE: "0.1", PORT: "8000" }
+    labels: { soka.dc: "DC-2", soka.host: "dc2-hostB1", soka.vm_type: V1 }
+    networks: [dc2]
+    ports: ["127.0.0.1:9114:8000"]
+  vm15:
+    <<: *worker
+    container_name: meta_vm15
+    cpu_quota: 1000   # 1 PE x 0.1 CPU
+    mem_limit: 2g
+    environment: { VM_NAME: vm15, VM_TYPE: V1, PES: "1", PE_SHARE: "0.1", PORT: "8000" }
+    labels: { soka.dc: "DC-2", soka.host: "dc2-hostB2", soka.vm_type: V1 }
+    networks: [dc2]
+    ports: ["127.0.0.1:9115:8000"]
+  vm16:
+    <<: *worker
+    container_name: meta_vm16
+    cpu_quota: 1000   # 1 PE x 0.1 CPU
+    mem_limit: 2g
+    environment: { VM_NAME: vm16, VM_TYPE: V1, PES: "1", PE_SHARE: "0.1", PORT: "8000" }
+    labels: { soka.dc: "DC-2", soka.host: "dc2-hostB0", soka.vm_type: V1 }
+    networks: [dc2]
+    ports: ["127.0.0.1:9116:8000"]
+  vm17:
+    <<: *worker
+    container_name: meta_vm17
+    cpu_quota: 1000   # 1 PE x 0.1 CPU
+    mem_limit: 2g
+    environment: { VM_NAME: vm17, VM_TYPE: V1, PES: "1", PE_SHARE: "0.1", PORT: "8000" }
+    labels: { soka.dc: "DC-2", soka.host: "dc2-hostB1", soka.vm_type: V1 }
+    networks: [dc2]
+    ports: ["127.0.0.1:9117:8000"]
+  vm18:
+    <<: *worker
+    container_name: meta_vm18
+    cpu_quota: 1000   # 1 PE x 0.1 CPU
+    mem_limit: 2g
+    environment: { VM_NAME: vm18, VM_TYPE: V1, PES: "1", PE_SHARE: "0.1", PORT: "8000" }
+    labels: { soka.dc: "DC-2", soka.host: "dc2-hostB2", soka.vm_type: V1 }
+    networks: [dc2]
+    ports: ["127.0.0.1:9118:8000"]
+  vm19:
+    <<: *worker
+    container_name: meta_vm19
+    cpu_quota: 1000   # 1 PE x 0.1 CPU
+    mem_limit: 2g
+    environment: { VM_NAME: vm19, VM_TYPE: V1, PES: "1", PE_SHARE: "0.1", PORT: "8000" }
+    labels: { soka.dc: "DC-2", soka.host: "dc2-hostB0", soka.vm_type: V1 }
+    networks: [dc2]
+    ports: ["127.0.0.1:9119:8000"]
