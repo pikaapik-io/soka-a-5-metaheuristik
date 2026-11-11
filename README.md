@@ -4,7 +4,7 @@ Proyek ini membandingkan dua algoritma metaheuristik untuk memetakan task ke
 virtual machine (VM), kemudian menjalankan pemetaan tersebut pada simulasi
 cloud menggunakan **CloudSim Plus 6.6.1**.
 
-> **Catatan tentang situs demo:** [halaman GitHub Pages](https://meyrosa.github.io/algortimameta_kel5/)
+> **Catatan tentang situs demo:** [PPT ALGORITMA HS DAN CSA](https://meyrosa.github.io/algortimameta_kel5/)
 > adalah demo edukasi interaktif untuk menjelaskan HS dan CSA. Demo itu tidak
 > menjalankan CloudSim Plus, tidak membaca dataset GoCJ di repository ini, dan
 > tidak terhubung dengan program Java. Untuk simulasi CloudSim, jalankan
