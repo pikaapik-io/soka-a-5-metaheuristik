@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="430" viewBox="0 0 960 430" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" role="img">
+<title>Fitness vs ukuran populasi</title>
+<desc>Rata-rata fitness terbaik HS dan CSA untuk setiap ukuran populasi, per skenario. Lebih rendah lebih baik.</desc>
+<style>
+.bg{fill:#ffffff}.t1{fill:#191919}.t2{fill:#666666}.grid{stroke:#e7e7e7}.axis{stroke:#c2c2c2}
+.ring{stroke:#ffffff}.band{fill:#191919;fill-opacity:.04}
+.s-HS{stroke:#257de0}.f-HS{fill:#257de0}.s-CSA{stroke:#f47230}.f-CSA{fill:#f47230}
+.s-o0{stroke:#84b9f3}.s-o1{stroke:#257de0}.s-o2{stroke:#0f4a96}
+@media (prefers-color-scheme: dark){
+.bg{fill:#191919}.t1{fill:#efefef}.t2{fill:#9c9c9c}.grid{stroke:#303030}.axis{stroke:#474747}
+.ring{stroke:#191919}.band{fill:#efefef;fill-opacity:.05}
+.s-HS{stroke:#338ced}.f-HS{fill:#338ced}.s-CSA{stroke:#e76624}.f-CSA{fill:#e76624}
+.s-o0{stroke:#b6d5f8}.s-o1{stroke:#519ced}.s-o2{stroke:#1b64be}
+}
+</style>
+<rect class="bg" width="960" height="430" rx="8"/>
+<text class="t1" x="24.0" y="32.0" text-anchor="start" font-size="16" font-weight="600">Fitness terbaik vs ukuran populasi</text>
+<text class="t2" x="24.0" y="52.0" text-anchor="start" font-size="12" font-weight="normal">Rata-rata 10 seed, w = 0,5, budget 10.000 evaluasi. Lebih rendah lebih baik. Titik besar = ukuran terbaik; garis vertikal = default 20.</text>
+<line class="s-HS" x1="24" y1="76" x2="46" y2="76" stroke-width="2"/>
+<circle class="f-HS ring" cx="35.0" cy="76.0" r="4" stroke-width="2"/>
+<text class="t1" x="52.0" y="80.0" text-anchor="start" font-size="12" font-weight="normal">HS (HMS)</text>
+<line class="s-CSA" x1="138" y1="76" x2="160" y2="76" stroke-width="2"/>
+<rect class="f-CSA ring" x="145.0" y="72.0" width="8" height="8" rx="1.5" stroke-width="2"/>
+<text class="t1" x="166.0" y="80.0" text-anchor="start" font-size="12" font-weight="normal">CSA (N)</text>
+<text class="t1" x="74.0" y="110.0" text-anchor="start" font-size="13" font-weight="600">S1 (100 task)</text>
+<text class="t2" x="74.0" y="126.0" text-anchor="start" font-size="12" font-weight="normal">terbaik: HS = 20, CSA = 30</text>
+<line class="grid" x1="74" y1="351.1" x2="324" y2="351.1"/>
+<text class="t2" x="66.0" y="355.1" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1,100</text>
+<line class="grid" x1="74" y1="305.3" x2="324" y2="305.3"/>
+<text class="t2" x="66.0" y="309.3" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1,120</text>
+<line class="grid" x1="74" y1="259.6" x2="324" y2="259.6"/>
+<text class="t2" x="66.0" y="263.6" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1,140</text>
+<line class="grid" x1="74" y1="213.8" x2="324" y2="213.8"/>
+<text class="t2" x="66.0" y="217.8" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1,160</text>
+<line class="grid" x1="74" y1="168.0" x2="324" y2="168.0"/>
+<text class="t2" x="66.0" y="172.0" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1,180</text>
+<line class="axis" x1="74" y1="360" x2="324" y2="360"/>
+<line class="axis" x1="218.8" y1="140" x2="218.8" y2="360"/>
+<text class="t2" x="222.8" y="152.0" text-anchor="start" font-size="12" font-weight="normal">default</text>
+<text class="t2" x="87.4" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">2</text>
+<text class="t2" x="110.5" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">3</text>
+<text class="t2" x="139.7" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">5</text>
+<text class="t2" x="179.2" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">10</text>
+<text class="t2" x="202.4" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">15</text>
+<text class="t2" x="218.8" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">20</text>
+<text class="t2" x="241.9" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">30</text>
+<text class="t2" x="271.1" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">50</text>
+<text class="t2" x="310.6" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">100</text>
+<text class="t2" x="199.0" y="398.0" text-anchor="middle" font-size="12" font-weight="normal">ukuran populasi (skala log)</text>
+<polyline class="s-HS" fill="none" stroke-width="2" stroke-linejoin="round" points="87.4,197.9 110.5,161.3 139.7,221.6 179.2,275.3 202.4,274.2 218.8,338.6 241.9,309.3 271.1,271.9 310.6,274.2"/>
+<circle class="f-HS ring" cx="87.4" cy="197.9" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="110.5" cy="161.3" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="139.7" cy="221.6" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="179.2" cy="275.3" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="202.4" cy="274.2" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="218.8" cy="338.6" r="6" stroke-width="2"/>
+<circle class="f-HS ring" cx="241.9" cy="309.3" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="271.1" cy="271.9" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="310.6" cy="274.2" r="4" stroke-width="2"/>
+<polyline class="s-CSA" fill="none" stroke-width="2" stroke-linejoin="round" points="87.4,168.1 110.5,228.0 139.7,285.5 179.2,328.6 202.4,331.2 218.8,324.5 241.9,338.7 271.1,278.9 310.6,217.4"/>
+<rect class="f-CSA ring" x="83.4" y="164.1" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="106.5" y="224.0" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="135.7" y="281.5" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="175.2" y="324.6" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="198.4" y="327.2" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="214.8" y="320.5" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="235.9" y="332.7" width="12" height="12" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="267.1" y="274.9" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="306.6" y="213.4" width="8" height="8" rx="1.5" stroke-width="2"/>
+<text class="t1" x="384.0" y="110.0" text-anchor="start" font-size="13" font-weight="600">S2 (500 task)</text>
+<text class="t2" x="384.0" y="126.0" text-anchor="start" font-size="12" font-weight="normal">terbaik: HS = 5, CSA = 10</text>
+<line class="grid" x1="384" y1="354.1" x2="634" y2="354.1"/>
+<text class="t2" x="376.0" y="358.1" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1,020</text>
+<line class="grid" x1="384" y1="293.5" x2="634" y2="293.5"/>
+<text class="t2" x="376.0" y="297.5" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1,040</text>
+<line class="grid" x1="384" y1="232.9" x2="634" y2="232.9"/>
+<text class="t2" x="376.0" y="236.9" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1,060</text>
+<line class="grid" x1="384" y1="172.3" x2="634" y2="172.3"/>
+<text class="t2" x="376.0" y="176.3" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1,080</text>
+<line class="axis" x1="384" y1="360" x2="634" y2="360"/>
+<line class="axis" x1="528.8" y1="140" x2="528.8" y2="360"/>
+<text class="t2" x="532.8" y="152.0" text-anchor="start" font-size="12" font-weight="normal">default</text>
+<text class="t2" x="397.4" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">2</text>
+<text class="t2" x="420.5" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">3</text>
+<text class="t2" x="449.7" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">5</text>
+<text class="t2" x="489.2" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">10</text>
+<text class="t2" x="512.4" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">15</text>
+<text class="t2" x="528.8" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">20</text>
+<text class="t2" x="551.9" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">30</text>
+<text class="t2" x="581.1" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">50</text>
+<text class="t2" x="620.6" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">100</text>
+<text class="t2" x="509.0" y="398.0" text-anchor="middle" font-size="12" font-weight="normal">ukuran populasi (skala log)</text>
+<polyline class="s-HS" fill="none" stroke-width="2" stroke-linejoin="round" points="397.4,312.5 420.5,305.9 449.7,338.7 489.2,323.7 512.4,325.3 528.8,320.3 551.9,320.3 581.1,303.5 620.6,298.9"/>
+<circle class="f-HS ring" cx="397.4" cy="312.5" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="420.5" cy="305.9" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="449.7" cy="338.7" r="6" stroke-width="2"/>
+<circle class="f-HS ring" cx="489.2" cy="323.7" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="512.4" cy="325.3" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="528.8" cy="320.3" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="551.9" cy="320.3" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="581.1" cy="303.5" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="620.6" cy="298.9" r="4" stroke-width="2"/>
+<polyline class="s-CSA" fill="none" stroke-width="2" stroke-linejoin="round" points="397.4,161.3 420.5,205.0 449.7,302.1 489.2,306.5 512.4,296.4 528.8,304.1 551.9,268.3 581.1,252.3 620.6,165.8"/>
+<rect class="f-CSA ring" x="393.4" y="157.3" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="416.5" y="201.0" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="445.7" y="298.1" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="483.2" y="300.5" width="12" height="12" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="508.4" y="292.4" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="524.8" y="300.1" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="547.9" y="264.3" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="577.1" y="248.3" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="616.6" y="161.8" width="8" height="8" rx="1.5" stroke-width="2"/>
+<text class="t1" x="694.0" y="110.0" text-anchor="start" font-size="13" font-weight="600">S3 (1.000 task)</text>
+<text class="t2" x="694.0" y="126.0" text-anchor="start" font-size="12" font-weight="normal">terbaik: HS = 5, CSA = 10</text>
+<line class="grid" x1="694" y1="349.0" x2="944" y2="349.0"/>
+<text class="t2" x="686.0" y="353.0" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1,020</text>
+<line class="grid" x1="694" y1="267.7" x2="944" y2="267.7"/>
+<text class="t2" x="686.0" y="271.7" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1,040</text>
+<line class="grid" x1="694" y1="186.3" x2="944" y2="186.3"/>
+<text class="t2" x="686.0" y="190.3" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1,060</text>
+<line class="axis" x1="694" y1="360" x2="944" y2="360"/>
+<line class="axis" x1="838.8" y1="140" x2="838.8" y2="360"/>
+<text class="t2" x="842.8" y="152.0" text-anchor="start" font-size="12" font-weight="normal">default</text>
+<text class="t2" x="707.4" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">2</text>
+<text class="t2" x="730.5" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">3</text>
+<text class="t2" x="759.7" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">5</text>
+<text class="t2" x="799.2" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">10</text>
+<text class="t2" x="822.4" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">15</text>
+<text class="t2" x="838.8" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">20</text>
+<text class="t2" x="861.9" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">30</text>
+<text class="t2" x="891.1" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">50</text>
+<text class="t2" x="930.6" y="378.0" text-anchor="middle" font-size="10" font-weight="normal">100</text>
+<text class="t2" x="819.0" y="398.0" text-anchor="middle" font-size="12" font-weight="normal">ukuran populasi (skala log)</text>
+<polyline class="s-HS" fill="none" stroke-width="2" stroke-linejoin="round" points="707.4,334.9 730.5,327.0 759.7,338.7 799.2,337.5 822.4,321.2 838.8,331.1 861.9,324.0 891.1,317.4 930.6,288.2"/>
+<circle class="f-HS ring" cx="707.4" cy="334.9" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="730.5" cy="327.0" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="759.7" cy="338.7" r="6" stroke-width="2"/>
+<circle class="f-HS ring" cx="799.2" cy="337.5" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="822.4" cy="321.2" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="838.8" cy="331.1" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="861.9" cy="324.0" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="891.1" cy="317.4" r="4" stroke-width="2"/>
+<circle class="f-HS ring" cx="930.6" cy="288.2" r="4" stroke-width="2"/>
+<polyline class="s-CSA" fill="none" stroke-width="2" stroke-linejoin="round" points="707.4,161.3 730.5,212.8 759.7,314.9 799.2,331.8 822.4,327.7 838.8,318.4 861.9,295.7 891.1,278.9 930.6,169.2"/>
+<rect class="f-CSA ring" x="703.4" y="157.3" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="726.5" y="208.8" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="755.7" y="310.9" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="793.2" y="325.8" width="12" height="12" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="818.4" y="323.7" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="834.8" y="314.4" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="857.9" y="291.7" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="887.1" y="274.9" width="8" height="8" rx="1.5" stroke-width="2"/>
+<rect class="f-CSA ring" x="926.6" y="165.2" width="8" height="8" rx="1.5" stroke-width="2"/>
+<text class="t2" x="22.0" y="250.0" text-anchor="middle" font-size="12" font-weight="normal" transform="rotate(-90 22 250.0)">fitness F(x)</text>
+</svg>

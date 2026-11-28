@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="430" viewBox="0 0 960 430" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" role="img">
+<title>HS vs CSA</title>
+<desc>Perbandingan HS dan CSA: selisih fitness dari batas bawah pada ukuran populasi 20 dan ukuran terbaik, serta waktu penjadwalan pada ukuran 20.</desc>
+<style>
+.bg{fill:#ffffff}.t1{fill:#191919}.t2{fill:#666666}.grid{stroke:#e7e7e7}.axis{stroke:#c2c2c2}
+.ring{stroke:#ffffff}.band{fill:#191919;fill-opacity:.04}
+.s-HS{stroke:#257de0}.f-HS{fill:#257de0}.s-CSA{stroke:#f47230}.f-CSA{fill:#f47230}
+.s-o0{stroke:#84b9f3}.s-o1{stroke:#257de0}.s-o2{stroke:#0f4a96}
+@media (prefers-color-scheme: dark){
+.bg{fill:#191919}.t1{fill:#efefef}.t2{fill:#9c9c9c}.grid{stroke:#303030}.axis{stroke:#474747}
+.ring{stroke:#191919}.band{fill:#efefef;fill-opacity:.05}
+.s-HS{stroke:#338ced}.f-HS{fill:#338ced}.s-CSA{stroke:#e76624}.f-CSA{fill:#e76624}
+.s-o0{stroke:#b6d5f8}.s-o1{stroke:#519ced}.s-o2{stroke:#1b64be}
+}
+</style>
+<rect class="bg" width="960" height="430" rx="8"/>
+<text class="t1" x="24.0" y="32.0" text-anchor="start" font-size="16" font-weight="600">HS vs CSA</text>
+<text class="t2" x="24.0" y="52.0" text-anchor="start" font-size="12" font-weight="normal">Kualitas = selisih fitness dari batas bawah, (F − 1) × 100%. Lebih rendah lebih baik untuk ketiga panel. Rata-rata 10 seed, w = 0,5.</text>
+<line class="s-HS" x1="24" y1="76" x2="46" y2="76" stroke-width="2"/>
+<circle class="f-HS ring" cx="35.0" cy="76.0" r="4" stroke-width="2"/>
+<text class="t1" x="52.0" y="80.0" text-anchor="start" font-size="12" font-weight="normal">HS</text>
+<line class="s-CSA" x1="90" y1="76" x2="112" y2="76" stroke-width="2"/>
+<rect class="f-CSA ring" x="97.0" y="72.0" width="8" height="8" rx="1.5" stroke-width="2"/>
+<text class="t1" x="118.0" y="80.0" text-anchor="start" font-size="12" font-weight="normal">CSA</text>
+<text class="t1" x="74.0" y="110.0" text-anchor="start" font-size="13" font-weight="600">Kualitas, populasi 20</text>
+<text class="t2" x="74.0" y="126.0" text-anchor="start" font-size="12" font-weight="normal">selisih dari batas bawah (%)</text>
+<line class="grid" x1="74" y1="360.0" x2="324" y2="360.0"/>
+<text class="t2" x="66.0" y="364.0" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">0</text>
+<line class="grid" x1="74" y1="272.0" x2="324" y2="272.0"/>
+<text class="t2" x="66.0" y="276.0" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">5</text>
+<line class="grid" x1="74" y1="184.0" x2="324" y2="184.0"/>
+<text class="t2" x="66.0" y="188.0" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">10</text>
+<line class="axis" x1="74" y1="360" x2="324" y2="360"/>
+<path class="f-HS" d="M80.7,360.0 V178.4 Q80.7,174.4 84.7,174.4 H110.7 Q114.7,174.4 114.7,178.4 V360.0 Z"/>
+<text class="t1" x="97.7" y="169.4" text-anchor="middle" font-size="11" font-weight="normal">10,55</text>
+<path class="f-CSA" d="M116.7,360.0 V167.6 Q116.7,163.6 120.7,163.6 H146.7 Q150.7,163.6 150.7,167.6 V360.0 Z"/>
+<text class="t1" x="133.7" y="158.6" text-anchor="middle" font-size="11" font-weight="normal">11,16</text>
+<text class="t2" x="115.7" y="378.0" text-anchor="middle" font-size="12" font-weight="normal">S1</text>
+<path class="f-HS" d="M164.0,360.0 V309.2 Q164.0,305.2 168.0,305.2 H194.0 Q198.0,305.2 198.0,309.2 V360.0 Z"/>
+<text class="t1" x="181.0" y="300.2" text-anchor="middle" font-size="11" font-weight="normal">3,12</text>
+<path class="f-CSA" d="M200.0,360.0 V299.8 Q200.0,295.8 204.0,295.8 H230.0 Q234.0,295.8 234.0,299.8 V360.0 Z"/>
+<text class="t1" x="217.0" y="290.8" text-anchor="middle" font-size="11" font-weight="normal">3,65</text>
+<text class="t2" x="199.0" y="378.0" text-anchor="middle" font-size="12" font-weight="normal">S2</text>
+<path class="f-HS" d="M247.3,360.0 V321.1 Q247.3,317.1 251.3,317.1 H277.3 Q281.3,317.1 281.3,321.1 V360.0 Z"/>
+<text class="t1" x="264.3" y="312.1" text-anchor="middle" font-size="11" font-weight="normal">2,44</text>
+<path class="f-CSA" d="M283.3,360.0 V315.6 Q283.3,311.6 287.3,311.6 H313.3 Q317.3,311.6 317.3,315.6 V360.0 Z"/>
+<text class="t1" x="300.3" y="306.6" text-anchor="middle" font-size="11" font-weight="normal">2,75</text>
+<text class="t2" x="282.3" y="378.0" text-anchor="middle" font-size="12" font-weight="normal">S3</text>
+<text class="t2" x="28.0" y="250.0" text-anchor="middle" font-size="12" font-weight="normal" transform="rotate(-90 28 250.0)">selisih dari batas bawah (%)</text>
+<text class="t1" x="384.0" y="110.0" text-anchor="start" font-size="13" font-weight="600">Kualitas, populasi terbaik</text>
+<text class="t2" x="384.0" y="126.0" text-anchor="start" font-size="12" font-weight="normal">ukuran terbaik masing-masing algoritma</text>
+<line class="grid" x1="384" y1="360.0" x2="634" y2="360.0"/>
+<text class="t2" x="376.0" y="364.0" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">0</text>
+<line class="grid" x1="384" y1="272.0" x2="634" y2="272.0"/>
+<text class="t2" x="376.0" y="276.0" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">5</text>
+<line class="grid" x1="384" y1="184.0" x2="634" y2="184.0"/>
+<text class="t2" x="376.0" y="188.0" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">10</text>
+<line class="axis" x1="384" y1="360" x2="634" y2="360"/>
+<path class="f-HS" d="M390.7,360.0 V178.4 Q390.7,174.4 394.7,174.4 H420.7 Q424.7,174.4 424.7,178.4 V360.0 Z"/>
+<text class="t1" x="407.7" y="169.4" text-anchor="middle" font-size="11" font-weight="normal">10,55</text>
+<path class="f-CSA" d="M426.7,360.0 V178.5 Q426.7,174.5 430.7,174.5 H456.7 Q460.7,174.5 460.7,178.5 V360.0 Z"/>
+<text class="t1" x="443.7" y="169.5" text-anchor="middle" font-size="11" font-weight="normal">10,54</text>
+<text class="t2" x="425.7" y="378.0" text-anchor="middle" font-size="12" font-weight="normal">S1</text>
+<text class="t2" x="425.7" y="394.0" text-anchor="middle" font-size="11" font-weight="normal">HS 20</text>
+<text class="t2" x="425.7" y="408.0" text-anchor="middle" font-size="11" font-weight="normal">CSA 30</text>
+<path class="f-HS" d="M474.0,360.0 V319.9 Q474.0,315.9 478.0,315.9 H504.0 Q508.0,315.9 508.0,319.9 V360.0 Z"/>
+<text class="t1" x="491.0" y="310.9" text-anchor="middle" font-size="11" font-weight="normal">2,51</text>
+<path class="f-CSA" d="M510.0,360.0 V301.2 Q510.0,297.2 514.0,297.2 H540.0 Q544.0,297.2 544.0,301.2 V360.0 Z"/>
+<text class="t1" x="527.0" y="292.2" text-anchor="middle" font-size="11" font-weight="normal">3,57</text>
+<text class="t2" x="509.0" y="378.0" text-anchor="middle" font-size="12" font-weight="normal">S2</text>
+<text class="t2" x="509.0" y="394.0" text-anchor="middle" font-size="11" font-weight="normal">HS 5</text>
+<text class="t2" x="509.0" y="408.0" text-anchor="middle" font-size="11" font-weight="normal">CSA 10</text>
+<path class="f-HS" d="M557.3,360.0 V324.3 Q557.3,320.3 561.3,320.3 H587.3 Q591.3,320.3 591.3,324.3 V360.0 Z"/>
+<text class="t1" x="574.3" y="315.3" text-anchor="middle" font-size="11" font-weight="normal">2,25</text>
+<path class="f-CSA" d="M593.3,360.0 V321.3 Q593.3,317.3 597.3,317.3 H623.3 Q627.3,317.3 627.3,321.3 V360.0 Z"/>
+<text class="t1" x="610.3" y="312.3" text-anchor="middle" font-size="11" font-weight="normal">2,42</text>
+<text class="t2" x="592.3" y="378.0" text-anchor="middle" font-size="12" font-weight="normal">S3</text>
+<text class="t2" x="592.3" y="394.0" text-anchor="middle" font-size="11" font-weight="normal">HS 5</text>
+<text class="t2" x="592.3" y="408.0" text-anchor="middle" font-size="11" font-weight="normal">CSA 10</text>
+<text class="t1" x="694.0" y="110.0" text-anchor="start" font-size="13" font-weight="600">Waktu penjadwalan, populasi 20</text>
+<text class="t2" x="694.0" y="126.0" text-anchor="start" font-size="12" font-weight="normal">milidetik per run (eksperimen utama)</text>
+<line class="grid" x1="694" y1="360.0" x2="944" y2="360.0"/>
+<text class="t2" x="686.0" y="364.0" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">0</text>
+<line class="grid" x1="694" y1="257.3" x2="944" y2="257.3"/>
+<text class="t2" x="686.0" y="261.3" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">500</text>
+<line class="grid" x1="694" y1="154.7" x2="944" y2="154.7"/>
+<text class="t2" x="686.0" y="158.7" text-anchor="end" font-size="12" font-weight="normal" style="font-variant-numeric:tabular-nums">1.000</text>
+<line class="axis" x1="694" y1="360" x2="944" y2="360"/>
+<path class="f-HS" d="M700.7,360.0 V346.7 Q700.7,342.7 704.7,342.7 H730.7 Q734.7,342.7 734.7,346.7 V360.0 Z"/>
+<text class="t1" x="717.7" y="337.7" text-anchor="middle" font-size="11" font-weight="normal">84</text>
+<path class="f-CSA" d="M736.7,360.0 V358.9 Q736.7,357.8 737.7,357.8 H769.6 Q770.7,357.8 770.7,358.9 V360.0 Z"/>
+<text class="t1" x="753.7" y="352.8" text-anchor="middle" font-size="11" font-weight="normal">10</text>
+<text class="t2" x="735.7" y="378.0" text-anchor="middle" font-size="12" font-weight="normal">S1</text>
+<path class="f-HS" d="M784.0,360.0 V275.6 Q784.0,271.6 788.0,271.6 H814.0 Q818.0,271.6 818.0,275.6 V360.0 Z"/>
+<text class="t1" x="801.0" y="266.6" text-anchor="middle" font-size="11" font-weight="normal">430</text>
+<path class="f-CSA" d="M820.0,360.0 V356.8 Q820.0,353.7 823.2,353.7 H850.8 Q854.0,353.7 854.0,356.8 V360.0 Z"/>
+<text class="t1" x="837.0" y="348.7" text-anchor="middle" font-size="11" font-weight="normal">31</text>
+<text class="t2" x="819.0" y="378.0" text-anchor="middle" font-size="12" font-weight="normal">S2</text>
+<path class="f-HS" d="M867.3,360.0 V167.6 Q867.3,163.6 871.3,163.6 H897.3 Q901.3,163.6 901.3,167.6 V360.0 Z"/>
+<text class="t1" x="884.3" y="158.6" text-anchor="middle" font-size="11" font-weight="normal">957</text>
+<path class="f-CSA" d="M903.3,360.0 V350.6 Q903.3,346.6 907.3,346.6 H933.3 Q937.3,346.6 937.3,350.6 V360.0 Z"/>
+<text class="t1" x="920.3" y="341.6" text-anchor="middle" font-size="11" font-weight="normal">65</text>
+<text class="t2" x="902.3" y="378.0" text-anchor="middle" font-size="12" font-weight="normal">S3</text>
+</svg>

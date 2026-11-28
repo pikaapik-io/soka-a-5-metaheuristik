@@ -1,0 +1,13 @@
+dataset,algorithm_or_test,comparison,population,p_value
+GoCJ_Dataset_100,HS,best_vs_20,20,1.0
+GoCJ_Dataset_100,CSA,best_vs_20,30,0.845703125
+GoCJ_Dataset_500,HS,best_vs_20,5,0.02734375
+GoCJ_Dataset_500,CSA,best_vs_20,10,0.76953125
+GoCJ_Dataset_1000,HS,best_vs_20,5,0.322265625
+GoCJ_Dataset_1000,CSA,best_vs_20,10,0.083984375
+GoCJ_Dataset_100,HS_vs_CSA,ukuran 20,20/20,0.431640625
+GoCJ_Dataset_100,HS_vs_CSA,ukuran terbaik,20/30,0.76953125
+GoCJ_Dataset_500,HS_vs_CSA,ukuran 20,20/20,0.083984375
+GoCJ_Dataset_500,HS_vs_CSA,ukuran terbaik,5/10,0.001953125
+GoCJ_Dataset_1000,HS_vs_CSA,ukuran 20,20/20,0.4921875
+GoCJ_Dataset_1000,HS_vs_CSA,ukuran terbaik,5/10,0.921875

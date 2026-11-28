@@ -46,6 +46,7 @@ import project.setup.SimulationSetup;
  *   "-" uses the 5-task sample. Run r uses seed + r - 1 and a new SimulationSetup.
  *   -Dlog=info shows the CloudSim log (default: error, because of the many runs).
  *   -Dout=folder writes the CSV files somewhere else (default: results/simulation).
+ *   -Dpop=N sets the population size (HS: HMS, CSA: N with n = N/2, d = N/10); default 20.
  */
 public final class Experiment {
 	/** Output folder, -Dout=... to change it (e.g. for the determinism check). */
@@ -147,20 +148,37 @@ public final class Experiment {
 		}
 	}
 
+	/**
+	 * Population size: HMS for HS, N for CSA. -Dpop=... overrides the default 20 for the
+	 * population-size sweep (scripts/population_sweep.sh); without it nothing changes.
+	 */
+	private static final int POPULATION = Integer.getInteger("pop", HarmonySearchScheduler.DEFAULT_HMS);
+
+	/** CSA keeps the default ratios n = N/2 and d = N/10 (10 and 2 for N = 20), at least 1 each. */
+	private static int csaSelected() {
+		return Math.max(1, POPULATION / 2);
+	}
+
+	private static int csaReplaced() {
+		return Math.max(1, POPULATION / 10);
+	}
+
 	private static MetaheuristicScheduler create(String algorithm, EnergyModel energyModel, long seed,
 												 double weight, int budget) {
 		return algorithm.equals("HS")
-				? new HarmonySearchScheduler(energyModel, seed, weight, budget)
-				: new ClonalSelectionScheduler(energyModel, seed, weight, budget);
+				? new HarmonySearchScheduler(energyModel, seed, weight, budget, POPULATION,
+						HarmonySearchScheduler.DEFAULT_HMCR, HarmonySearchScheduler.DEFAULT_PAR)
+				: new ClonalSelectionScheduler(energyModel, seed, weight, budget, POPULATION, csaSelected(),
+						ClonalSelectionScheduler.DEFAULT_CLONE_FACTOR, csaReplaced());
 	}
 
 	private static String describe(String algorithm, int taskCount) {
 		return algorithm.equals("HS")
-				? String.format(Locale.US, "HS(HMS=%d, HMCR=%s, PAR=%s)", HarmonySearchScheduler.DEFAULT_HMS,
+				? String.format(Locale.US, "HS(HMS=%d, HMCR=%s, PAR=%s)", POPULATION,
 						format(HarmonySearchScheduler.DEFAULT_HMCR), format(HarmonySearchScheduler.DEFAULT_PAR))
 				: String.format(Locale.US, "CSA(N=%d, n=%d, beta=%s, d=%d, maxMut=%d)",
-						ClonalSelectionScheduler.DEFAULT_POPULATION, ClonalSelectionScheduler.DEFAULT_SELECTED,
-						format(ClonalSelectionScheduler.DEFAULT_CLONE_FACTOR), ClonalSelectionScheduler.DEFAULT_REPLACED,
+						POPULATION, csaSelected(),
+						format(ClonalSelectionScheduler.DEFAULT_CLONE_FACTOR), csaReplaced(),
 						ClonalSelectionScheduler.maxMutation(taskCount));
 	}
 

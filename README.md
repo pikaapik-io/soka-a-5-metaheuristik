@@ -24,6 +24,7 @@ untuk diukur secara lengkap.
 9. [Hasil simulasi](#9-hasil-simulasi)
 10. [Pembahasan](#10-pembahasan)
 11. [Batasan](#11-batasan)
+12. [Kesimpulan](#12-kesimpulan)
 
 ## Ringkasan hasil
 
@@ -36,6 +37,11 @@ evaluasi, bobot `w = 0,5`.
 - HS konvergen lebih cepat, tetapi waktu penjadwalannya sekitar 8–15 kali lebih lama.
 - Energi hampir seluruhnya ditentukan makespan, sehingga mengubah bobot `w` hampir tidak mengubah hasil.
 - Model rumus yang dipakai saat pencarian cocok dengan CloudSim (selisih sekitar 1–1,6%).
+- Uji 9 ukuran populasi (2–100): ukuran terbaik adalah **N = 10 untuk CSA** dan **HMS 10 untuk HS**
+  (HMS 5 untuk 500 task ke atas). Default 20 sudah dekat dengan yang terbaik (makespan paling banyak
+  0,6% lebih buruk). CSA jauh lebih peka terhadap ukuran populasi daripada HS.
+- **Kesimpulan:** HS lebih baik untuk kualitas jadwal, sedangkan CSA lebih baik bila waktu
+  penjadwalan penting. Lihat [12. Kesimpulan](#12-kesimpulan).
 
 ---
 
@@ -720,6 +726,79 @@ karena populasi awal HS dan CSA identik.
 
 Kurva untuk `w = 0,8` dan `w = 0,2` ada di `results/analysis/`.
 
+### 9.6 Uji ukuran populasi (HMS dan N)
+
+Ukuran populasi (HMS pada HS, N pada CSA) bawaannya 20. Nilai ini bisa diatur, jadi kami mencoba
+9 ukuran: 2, 3, 5, 10, 15, 20, 30, 50, dan 100. Pengaturan lainnya sama dengan eksperimen utama:
+budget 10.000 evaluasi, `w = 0,5`, seed 42–51, dan ketiga dataset. Pada CSA, `n` dan `d` diskalakan
+dengan rasio bawaan (`n = N/2`, `d = N/10`, minimal 1), jadi N = 20 tetap memberi n = 10 dan d = 2.
+Ukuran 20 menghasilkan angka yang persis sama dengan eksperimen utama.
+
+```bash
+scripts/population_sweep.sh       # 9 ukuran × 3 dataset × HS/CSA × 10 run, ±10–15 menit
+```
+
+![Fitness vs ukuran populasi](results/population/population_fitness.svg)
+
+Fitness rata-rata 10 run (lebih kecil lebih baik, **tebal** = terbaik di kolom). Peringkat = urutan
+ukuran di tiap skenario (1 = terbaik), dirata-rata atas S1–S3. Simpangan baku, makespan, energi, dan
+waktu ada di `results/population/tables.md`.
+
+| Ukuran | S1 HS | S1 CSA | S2 HS | S2 CSA | S3 HS | S3 CSA | Peringkat HS | Peringkat CSA |
+|:---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 2 | 1,1670 | 1,1800 | 1,0337 | 1,0836 | 1,0235 | 1,0662 | 5,67 | 9,00 |
+| 3 | 1,1830 | 1,1538 | 1,0359 | 1,0692 | 1,0254 | 1,0535 | 7,00 | 7,00 |
+| 5 | 1,1566 | 1,1287 | **1,0251** | 1,0372 | **1,0225** | 1,0284 | 3,00 | 4,00 |
+| 10 | 1,1331 | 1,1098 | 1,0300 | **1,0357** | 1,0228 | **1,0242** | **2,67** | **1,67** |
+| 15 | 1,1336 | 1,1087 | 1,0295 | 1,0390 | 1,0268 | 1,0252 | 4,33 | 2,67 |
+| 20 (default) | **1,1055** | 1,1116 | 1,0312 | 1,0365 | 1,0244 | 1,0275 | 3,00 | 3,00 |
+| 30 | 1,1183 | **1,1054** | 1,0312 | 1,0483 | 1,0261 | 1,0331 | 4,33 | 3,67 |
+| 50 | 1,1346 | 1,1316 | 1,0367 | 1,0536 | 1,0278 | 1,0372 | 7,33 | 6,00 |
+| 100 | 1,1336 | 1,1584 | 1,0382 | 1,0822 | 1,0349 | 1,0642 | 7,67 | 8,00 |
+
+Ukuran terbaik dibanding default 20 (Wilcoxon berpasangan pada fitness, pasangan = seed sama):
+
+| Skenario | Algoritma | Ukuran terbaik | Fitness terbaik | Fitness ukuran 20 | Perubahan makespan | p-value |
+|:---:|:---:|:---:|---:|---:|---:|---:|
+| S1 (100) | HS | 20 | 1,1055 | 1,1055 | 0% | – (default sudah terbaik) |
+| S1 (100) | CSA | 30 | 1,1054 | 1,1116 | −0,59% | 0,8457 |
+| S2 (500) | HS | 5 | 1,0251 | 1,0312 | −0,45% | **0,0273** |
+| S2 (500) | CSA | 10 | 1,0357 | 1,0365 | −0,05% | 0,7695 |
+| S3 (1.000) | HS | 5 | 1,0225 | 1,0244 | −0,17% | 0,3223 |
+| S3 (1.000) | CSA | 10 | 1,0242 | 1,0275 | −0,37% | 0,0840 |
+
+**Kenapa ukuran populasi berpengaruh?** Budget evaluasinya tetap, jadi ukuran populasi menentukan
+cara 10.000 evaluasi itu dipakai.
+
+- **Terlalu besar membuat pencarian lambat.** Di CSA, n antibodi terbaik masing-masing dikloning
+  `floor(β·N / peringkat)` kali, jadi satu generasi makin mahal kalau N makin besar. N = 10 butuh
+  23 evaluasi per generasi (±434 generasi), N = 20 butuh 58 (±172 generasi), dan N = 100 butuh
+  442 (hanya ±22 generasi). Di HS, harmoni baru hanya menggantikan anggota terburuk, sehingga memory
+  yang besar butuh lebih banyak iterasi sampai seluruh isinya membaik.
+- **Terlalu kecil membuat CSA macet.** Dengan N = 2 atau 3, hanya satu antibodi yang dipilih
+  (n = 1), dan antibodi peringkat pertama selalu dimutasi 1 gen saja. Pencariannya jadi
+  langkah kecil di sekitar satu solusi dan mudah terjebak. HS lebih tahan: harmoni baru tetap
+  menggabungkan gen dari memory dan sekitar 2% gen acak (`HMCR = 0,98`), jadi HMS 2 pun masih
+  cukup baik di S2 dan S3.
+
+![Konvergensi per ukuran populasi](results/population/population_convergence.svg)
+
+Grafik di atas memperlihatkan pola itu di S3. Pada CSA, N = 2 turun cepat di awal lalu mendatar
+(macet), N = 100 turun paling lambat, dan N = 10 paling rendah di akhir. Pada HS ketiga kurva
+lebih berdekatan; hanya HMS 100 yang jelas tertinggal.
+
+> **Intinya:**
+> - **CSA: N = 10 paling baik.** Peringkat rata-ratanya 1,67 (terbaik dari 9 ukuran) dan terbaik di
+>   S2 serta S3. Selisihnya dengan N = 20 kecil dan tidak bermakna (p = 0,08–0,85). CSA peka terhadap
+>   ukuran: dengan N ≤ 3 atau N ≥ 50, fitness di S3 menjadi 1,0372–1,0662, dibanding 1,0242 untuk N = 10.
+> - **HS: HMS 10 paling aman** (peringkat rata-rata 2,67). HMS 5 terbaik untuk 500 dan 1.000 task,
+>   dan di S2 perbaikannya terhadap HMS 20 bermakna (p = 0,0273, makespan −0,45%). Namun HMS 5 buruk
+>   di S1 (1,1566 vs 1,1055). HS jauh lebih tahan terhadap perubahan ukuran: untuk HMS 2–30, fitness
+>   di S3 hanya berkisar 1,0225–1,0268.
+> - **Default 20 sudah cukup baik untuk keduanya** (peringkat 3,00). Tuning ukuran populasi paling
+>   banyak memperbaiki makespan 0,6%. Default di kode tidak diubah, supaya hasil eksperimen utama dan
+>   verifikasi Java–Python tetap berlaku. Ukuran lain bisa dipakai dengan `-Dpop=N` (lihat bagian 7).
+
 ## 10. Pembahasan
 
 - **Kualitas solusi.** HS mendapat makespan dan energi rata-rata sedikit lebih rendah (0,5–0,9%).
@@ -730,7 +809,9 @@ Kurva untuk `w = 0,8` dan `w = 0,2` ada di `results/analysis/`.
   per klon. Di akhir budget selisih keduanya mengecil.
 - **Stabilitas.** Di S1 HS kurang stabil (simpangan baku fitness 0,0737 vs 0,0263). Dua run (seed 43
   dan 50) berhenti di makespan sekitar 237,5 s (lihat run 2 di Bukti run). Dugaan: `HMCR = 0,98`
-  membuat isi memory cepat seragam sehingga pencarian macet. Dugaan ini belum diuji dengan variasi parameter.
+  membuat isi memory cepat seragam sehingga pencarian macet. Uji ukuran populasi (9.6) menunjukkan
+  ketidakstabilan ini tidak hilang dengan mengubah HMS: simpangan baku fitness HS di S1 tetap 0,07–0,15
+  untuk semua HMS 2–100. Jadi penyebabnya kemungkinan bukan ukuran memory. Pengaruh HMCR belum diuji.
 - **Biaya komputasi.** HS 8–15 kali lebih lambat (84 vs 10,5 ms di S1, 957 vs 65 ms di S3).
   Kemungkinan besar karena HS menarik beberapa angka acak per task di setiap iterasi.
 - **Energi vs makespan.** Pada konfigurasi ini keduanya hampir sejalan (lihat sensitivitas `w`).
@@ -746,8 +827,41 @@ Kurva untuk `w = 0,8` dan `w = 0,2` ada di `results/analysis/`.
 - Setiap konfigurasi hanya 10 run. Ada 27 uji Wilcoxon tanpa koreksi pengujian berganda, sehingga hasil
   dengan p mendekati 0,05 (misalnya S2, `w = 0,5`: p = 0,0488) sebaiknya dibaca hati-hati.
 - Hasil berlaku untuk parameter bawaan (HMS 20, HMCR 0,98, PAR 0,5; N 20, n 10, β 1,0, d 2), tiga
-  dataset GoCJ, dan satu konfigurasi infrastruktur. Parameter belum di-tuning.
+  dataset GoCJ, dan satu konfigurasi infrastruktur. Dari parameter itu, baru ukuran populasi yang
+  diuji (9.6), dan hanya pada `w = 0,5`. HMCR, PAR, β, dan d belum di-tuning.
+- Di 9.6, ukuran terbaik dipilih dari data yang sama dengan yang diuji, jadi p-value "terbaik vs 20"
+  cenderung optimistis. Untuk memastikan, ukuran terpilih perlu diuji lagi dengan seed baru.
 - Folder `realworld/` bersifat opsional dan tidak ada hasilnya di repository ini.
+
+## 12. Kesimpulan
+
+![HS vs CSA](results/population/hs_vs_csa.svg)
+
+Panel kiri dan tengah memakai data 9.6, sedangkan panel kanan memakai data eksperimen utama (9.1).
+Kualitas ditulis sebagai selisih dari batas bawah, `(F − 1) × 100%`: 0% berarti tepat di batas bawah.
+
+**Ukuran populasi terbaik.** CSA paling baik dengan **N = 10**. HS paling baik dengan **HMS 10**,
+atau HMS 5 bila task-nya 500 ke atas. Default 20 masih layak untuk keduanya. Hindari ukuran 50 ke
+atas, dan untuk CSA hindari N ≤ 3.
+
+**Algoritma terbaik.** HS lebih baik dalam kualitas jadwal, sedangkan CSA lebih baik dalam kecepatan.
+
+| Kriteria | Lebih baik | Bukti |
+|:---|:---:|:---|
+| Kualitas jadwal (fitness, makespan, energi) | **HS** | Makespan rata-rata HS lebih rendah di semua 9 kombinasi skenario × `w`, dan bermakna di 4 di antaranya (9.3). Setelah ukuran populasi di-tuning, HS bermakna lebih baik di S2 (p = 0,0020). CSA tidak pernah lebih baik secara bermakna. |
+| Besar keunggulan | kecil | 0,2–1,1 poin persen dari batas bawah, atau makespan 0,3–1,3% lebih rendah. Di S1 keduanya setara. |
+| Keseimbangan beban | **HS** | DI lebih rendah dan utilisasi lebih tinggi di ketiga skenario (9.1). |
+| Kepekaan terhadap ukuran populasi | **HS** | Di S2 dan S3 fitness HS hampir datar untuk HMS 2–30, sedangkan CSA memburuk tajam bila N terlalu kecil atau terlalu besar (9.6). |
+| Kecepatan konvergensi per evaluasi | **HS** | HS turun lebih cepat di awal pencarian (9.5). |
+| Waktu penjadwalan | **CSA** | 8–15 kali lebih cepat (10 vs 84 ms di S1, 65 vs 957 ms di S3). |
+| Stabilitas antar seed | campuran | Di S1 CSA jauh lebih stabil (simpangan baku 0,026 vs 0,074). Di S2 dan S3 HS sedikit lebih stabil. |
+
+**Jawaban akhir:** untuk tujuan proyek ini, yaitu meminimalkan makespan dan energi, **HS adalah
+algoritma terbaik**, sebaiknya dengan HMS 10 (atau 5 untuk 500 task ke atas). HS tidak pernah kalah
+secara bermakna, unggul bermakna pada 500 dan 1.000 task, membagi beban lebih merata, dan tidak
+rewel soal ukuran populasi. Keunggulannya kecil, jadi **CSA dengan N = 10 tetap alternatif yang
+masuk akal** bila waktu penjadwalan penting, misalnya untuk penjadwalan ulang yang sering atau
+jumlah task yang jauh lebih besar, karena CSA 8–15 kali lebih cepat. Untuk 100 task, keduanya setara.
 
 ## Keluaran
 
@@ -757,3 +871,6 @@ Kurva untuk `w = 0,8` dan `w = 0,2` ada di `results/analysis/`.
 - `results/determinism/`: bukti pengulangan dengan seed yang sama.
 - `results/analysis/`: `tables.md`, `wilcoxon.csv`, dan grafik `convergence_*.svg`
   (dibuat dengan `python3 scripts/analyze.py`).
+- `results/population/`: uji ukuran populasi, yaitu `tables.md`, `summary.csv`, `wilcoxon.csv`, dan
+  grafik `*.svg`. Data mentah per ukuran ada di `raw/`. Dibuat dengan `scripts/population_sweep.sh`,
+  atau `python3 scripts/population_analysis.py` untuk menganalisis ulang saja.
