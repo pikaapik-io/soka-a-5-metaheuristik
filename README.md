@@ -21,6 +21,8 @@ cloud menggunakan **CloudSim Plus 6.6.1**.
 - `run.sh`: runner uji cepat atau rangkaian eksperimen CloudSim dan analisis.
 - `scripts/analyze.py`: membuat ringkasan, uji Wilcoxon berpasangan, dan kurva
   konvergensi dari hasil simulasi.
+- `scripts/population_sweep.sh` dan `scripts/population_analysis.py`: uji ukuran
+  populasi HS/CSA beserta tabel dan grafiknya di `results/population/`.
 - `realworld/`: runner opsional yang mengirim beban kerja ke container Docker.
   Bagian ini bukan simulasi CloudSim dan tidak diperlukan untuk menjalankan
   eksperimen di README ini.
@@ -89,6 +91,10 @@ Experiment [file_dataset|-] [HS|CSA] [jumlah_run=10] [seed=42] [w=0.5] [budget=1
 - `budget` adalah jumlah maksimum evaluasi fungsi fitness. Untuk parameter
   bawaan, nilainya minimal 20.
 - Jumlah run lebih dari satu menampilkan rata-rata dan simpangan baku metrik.
+- Ukuran populasi bawaan adalah 20 (HMS untuk HS, N untuk CSA). Untuk mengubahnya,
+  tambahkan `-Dpop=N` sebelum `exec:java`, misalnya
+  `mvn -q -Dpop=10 exec:java -Dexec.args="..."`. Lihat
+  [Uji ukuran populasi](#uji-ukuran-populasi-hms-dan-n).
 
 ### Rangkaian eksperimen lengkap
 
